@@ -45,6 +45,7 @@ namespace Avalonia.Android.Platform.SkiaPlatform
         private readonly AndroidInsetsManager? _insetsManager;
         private readonly ClipboardImpl _clipboard;
         private readonly AndroidLauncher? _launcher;
+        private readonly AndroidScreens? _screens;
         private ViewImpl _view;
         private WindowTransparencyLevel _transparencyLevel;
 
@@ -62,6 +63,7 @@ namespace Avalonia.Android.Platform.SkiaPlatform
             _gl = new EglGlPlatformSurface(this);
             _framebuffer = new FramebufferManager(this);
             _clipboard = new ClipboardImpl(avaloniaView.Context.GetSystemService(Context.ClipboardService).JavaCast<ClipboardManager>());
+            _screens = new AndroidScreens(avaloniaView.Context);
 
             RenderScaling = _view.Scaling;
 
@@ -101,7 +103,6 @@ namespace Avalonia.Android.Platform.SkiaPlatform
         internal InvalidationAwareSurfaceView InternalView => _view;
 
         public double DesktopScaling => RenderScaling;
-        public IScreenImpl? Screen { get; }
         public IPlatformHandle Handle => _view;
 
         public IEnumerable<object> Surfaces { get; }
@@ -401,6 +402,11 @@ namespace Avalonia.Android.Platform.SkiaPlatform
                 return _launcher;
             }
 
+            if (featureType == typeof(IScreenImpl))
+            {
+                return _screens;
+            }
+            
             return null;
         }
 
