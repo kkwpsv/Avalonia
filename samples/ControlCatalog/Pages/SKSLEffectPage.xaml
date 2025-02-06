@@ -4,9 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ControlCatalog.Pages.SKSLEffectPage">
+  <UserControl.Resources>
+    <!--<VisualBrush x:Key="TestVisualBrush" TileMode="Tile">
+      <VisualBrush.Visual>
+        <Rectangle Fill="Blue" Width="10" Height="10"/>
+      </VisualBrush.Visual>
+    </VisualBrush>-->
+
+  </UserControl.Resources>
   <UniformGrid Columns="3" Height="200">
     <Rectangle x:Name="Rectangle0" Fill="Red" Margin="20"/>
-    <Rectangle x:Name="Rectangle1" Fill="Red" Margin="20"/>
+    <Rectangle x:Name="Rectangle1" Margin="20"/>
     <Rectangle x:Name="Rectangle2" Fill="Red" Margin="20"/>
   </UniformGrid>
 </UserControl>

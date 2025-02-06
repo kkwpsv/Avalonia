@@ -1,5 +1,6 @@
 using System;
 using Avalonia.Media;
+using Avalonia.Media.Effects;
 using Avalonia.Skia.Effects;
 using SkiaSharp;
 
@@ -7,7 +8,7 @@ namespace Avalonia.Skia;
 
 partial class DrawingContextImpl
 {
-    
+
     public void PushEffect(IEffect effect)
     {
         CheckLease();
@@ -45,13 +46,33 @@ partial class DrawingContextImpl
             return SKImageFilter.CreateDropShadow((float)drop.OffsetX, (float)drop.OffsetY, sigma, sigma, color);
         }
 
-        if (effect is ISKSLEffect skslEffect)
+        if (effect is IShaderEffect shader)
         {
-            var builder = skslEffect.ShaderBuilder;
-            return SKImageFilter.CreateRuntimeShader(builder, skslEffect.MaxSampleRadius, skslEffect.ChildShaderNames, skslEffect.Inputs);
+            if (shader.ShaderObject is SKRuntimeEffect runtimeEffect)
+            {
+                var uniforms = new SKRuntimeEffectUniforms(runtimeEffect);
+                BuildSKRuntimeEffectUniforms(uniforms, shader.ShaderUniforms);
+                var skShader = runtimeEffect.ToShader(false, uniforms);
+                return SKImageFilter.CreateShader(skShader);
+            }
+            //TODO
         }
 
         return null;
     }
-    
+
+    private void BuildSKRuntimeEffectUniforms(SKRuntimeEffectUniforms uniforms, ShaderUniform[] shaderUniforms)
+    {
+        foreach (var item in shaderUniforms)
+        {
+            if (item.Value is float floatVal)
+            {
+                uniforms[item.Name] = floatVal;
+            }
+            else
+            {
+                // Unsupported uniform type.
+            }
+        }
+    }
 }

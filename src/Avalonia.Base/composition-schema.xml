@@ -108,4 +108,7 @@
         <Property Name="Stretch" Type="Avalonia.Media.Stretch" />
         <Property Name="TileMode" Type="Avalonia.Media.TileMode" />
     </Object>
+    <!--<Object Name="CompositionSimpleShaderEffect" Internal="true" ServerOnly="true" ServerBase="SimpleServerRenderResource">
+      <Property Name="Padding" Type="Avalonia.Thickness" />
+    </Object>-->
 </NComposition>

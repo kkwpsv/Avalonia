@@ -1,0 +1,24 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="SimpleShaderDemo.MainWindow"
+        Title="SimpleShaderDemo">
+
+  <Grid>
+    <Grid Height="300" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="10"/>
+        <ColumnDefinition/>
+        <ColumnDefinition Width="10"/>
+        <ColumnDefinition/>
+        <ColumnDefinition Width="10"/>
+        <ColumnDefinition/>
+        <ColumnDefinition Width="10"/>
+      </Grid.ColumnDefinitions>
+      <Rectangle x:Name="Rectangle0" Grid.Column="1" Fill="Red"/>
+      <Rectangle x:Name="Rectangle1" Grid.Column="3" Fill="Red"/>
+    </Grid>
+  </Grid>
+</Window>

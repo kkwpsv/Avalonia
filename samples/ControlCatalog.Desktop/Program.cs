@@ -27,6 +27,10 @@ namespace ControlCatalog
 
                     EmbedSample.Implementation = new EmbedSampleWin();
                 })
+                .With(new Win32PlatformOptions
+                {
+                    RenderingMode = [Win32RenderingMode.AngleEgl],
+                })
                 .UseWin32()
                 .UseSkia();
 
